@@ -60,23 +60,6 @@ public class AlternativeArray {
         }
         betterA = better.size();
         worseA = worse.size();
-        //Console.WriteLine("\nBetter: ");
-        //foreach (Alternative item in better)
-        //{
-        //    item.printAlternatives();
-        //}
-        //Console.WriteLine("\nWorse: ");
-        //foreach (Alternative item in worse)
-        //{
-        //    item.printAlternatives();
-        //}
-        //Console.WriteLine("\nincomparable: ");
-        //foreach (Alternative item in incomparable)
-        //{
-        //    item.printAlternatives();
-        //}
-        //Console.WriteLine("\nTotal entries (N+1): " + (better.Count + worse.Count + incomparable.Count + 1));
-        //Console.WriteLine("\nBetter: " + (better.Count) + "\nWorse: " + worse.Count + "\nIncomparable: " + incomparable.Count);
     }
 
     public void advancedAutomaticComparison(Alternative alternative, List<Integer> centerindexes, int[] g1, int[] g2, int iter) {

@@ -1,11 +1,12 @@
 package com.gmail.myAlgorithm;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Classifier {
-    int[] decisions = {1,1,2,2,1,1,2,2,1,1,2,2,1,2,2};
+    int[] decisions = {1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 2, 2};
     int[] class1center = {1, 1, 1, 1, 1};
     int[] class2center = {2, 2, 2, 2, 3};
     List<Integer> class1indexes;
@@ -148,9 +149,8 @@ public class Classifier {
             System.out.println("Paradox!");
             return;
         }
-        System.out.print("Chosen item: ");
+        System.out.println("Chosen item: ");
         alternativeArray.alternatives[FMAX].printAlternatives();
-        System.out.println("(OR " + (FMAX + 1) + ")");
         if (decisions[iteration] == 1) {
             G[FMAX] = 1;
             AdjustDecisions = alternativeArray.findBetter(alternativeArray.alternatives[FMAX], class1indexes);
@@ -172,12 +172,13 @@ public class Classifier {
     }
 
     public void printAllInfo() {
-        System.out.println("K1\tK2\tK3\tK4\tK5\tG\td1\td2\tp1\tp2\tg1\tg2\tF1\tF2\tF");
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        System.out.println(String.format("%-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s",
+                "K1", "K2", "K3", "K4", "K5", "G", "d1", "d2", "p1", "p2", "g1", "g2", "F1", "F2", "F"));
         for (int i = 0; i < 48; ++i) {
-            System.out.println(K1[i] + "\t" + K2[i] + "\t" + K3[i] + "\t" +
-                    K4[i] + "\t" + K5[i] + "\t" + G[i] + "\t" + d1[i]
-                    + "\t" + d2[i] + "\t" + Math.round(p1[i] * 10.0) / 10.0 + "\t" + Math.round(p2[i] * 10.0) / 10.0 + "\t" +
-                    g1[i] + "\t" + g2[i] + "\t" + Math.round(f1[i] * 10.0) / 10.0 + "\t" + Math.round(f2[i] * 10.0) / 10.0 + "\t" + Math.round(F[i]* 10.0) / 10.0);
+            System.out.println(String.format("%-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s",
+                    K1[i], K2[i], K3[i], K4[i], K5[i], G[i], d1[i], d2[i], decimalFormat.format(p1[i]), decimalFormat.format(p2[i]),
+                    g1[i], g2[i], decimalFormat.format(f1[i]), decimalFormat.format(f2[i]), decimalFormat.format(F[i])));
         }
     }
 
