@@ -1,28 +1,78 @@
 package com.gmail.myAlgorithm;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class Alternative {
-    private Integer K1;
-    private Integer K2;
-    private Integer K3;
-    private Integer K4;
-    private Integer K5;
-    private Integer G;
-    private double d1;
-    private double d2;
-    private double p1;
-    private double p2;
-    private double g1;
-    private double g2;
-    private double F1;
-    private double F2;
-    private double F;
+    public int[] attributes;
+
+    public void assignSize(int size) {
+        attributes = new int[size];
+    }
+
+    public int[] getAttributes() {
+        return attributes;
+    }
+
+    public void assignAlternativeValue(int[] values) {
+        attributes = values;
+    }
+
+    public int compareAlternatives(Alternative alternative) {
+        int[] evaluationArray = new int[attributes.length];
+        int result = 5;
+        int count1 = 0;
+        int countm1 = 0;
+        for (int i = 0; i < attributes.length; ++i) {
+            if (attributes[i] > alternative.attributes[i]) {
+                evaluationArray[i] = 1;
+            }
+            if (attributes[i] == alternative.attributes[i]) {
+                evaluationArray[i] = 0;
+            }
+            if (attributes[i] < alternative.attributes[i]) {
+                evaluationArray[i] = -1;
+            }
+        }
+        for (int i = 0; i < evaluationArray.length; ++i) {
+            if (evaluationArray[i] == 1)
+                ++count1;
+            if (evaluationArray[i] == -1)
+                ++countm1;
+        }
+        if (count1 > 0 && countm1 == 0)
+            result = 1;
+        if (count1 > 0 && countm1 > 0)
+            result = 0;
+        if (count1 == 0 && countm1 > 0)
+            result = -1;
+        return result;
+    }
+
+    public int[] plusOne(int[] alternativeOptions) {
+        int[] newAttributes = new int[attributes.length];
+        for (int i = alternativeOptions.length - 1; i >= 0; --i) {
+            if (i != alternativeOptions.length - 1) {
+                newAttributes[i + 1] = 1;
+            }
+            if (attributes[i] < alternativeOptions[i]) {
+                newAttributes[i] = attributes[i] + 1;
+                for (int j = i - 1; j >= 0; --j) {
+                    newAttributes[j] = attributes[j];
+                }
+                break;
+            } else {
+                newAttributes[i] = attributes[i];
+            }
+        }
+        return newAttributes;
+    }
+
+    public void printAlternatives() {
+        for (int i = 0; i < attributes.length; ++i) {
+            if (i == 0)
+                System.out.print("( ");
+            System.out.print("k" + (i + 1) + attributes[i] + " ");
+            if (i == attributes.length - 1)
+                System.out.print(") ");
+        }
+    }
 }
