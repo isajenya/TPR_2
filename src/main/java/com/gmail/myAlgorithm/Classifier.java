@@ -78,12 +78,12 @@ public class Classifier {
             class2center[i] /= class2indexes.size();
         }
 
-        System.out.print("Center 1 = ( ");
+        System.out.print("Центр 1 = ( ");
         for (int i = 0; i < 5; ++i) {
             System.out.print(class1center[i]+" ");
         }
         System.out.println(")");
-        System.out.print("Center 2 = ( ");
+        System.out.print("Центр 2 = ( ");
         for (int i = 0; i < 5; ++i) {
             System.out.print(class2center[i]+" ");
         }
@@ -157,10 +157,10 @@ public class Classifier {
         }
         if (Fcomp == 0) {
             check = 1;
-            System.out.println("Paradox!");
+            System.out.println("Парадокс!");
             return;
         }
-        System.out.println("Chosen item: ");
+        System.out.println("Обраний об'єкт: ");
         alternativeArray.alternatives[FMAX].printAlternatives();
         if (decisions[iteration] == 1) {
             G[FMAX] = 1;

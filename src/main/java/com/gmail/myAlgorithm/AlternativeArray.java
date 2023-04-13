@@ -42,7 +42,7 @@ public class AlternativeArray {
     public void automaticComparison(Alternative alternative) {
         betterA = 0;
         worseA = 0;
-        System.out.println("\nComparison for: ");
+        System.out.println("\nПорівняння з: ");
         alternative.printAlternatives();
         List<Alternative> better = new ArrayList<>();
         List<Alternative> worse = new ArrayList<>();
@@ -124,6 +124,6 @@ public class AlternativeArray {
             if ((i + 1) % 5 == 0)
                 System.out.println();
         }
-        System.out.println("\nAmount of possible alternatives: " + alternatives.length);
+        System.out.println("\nКількість можливих альтернатив: " + alternatives.length);
     }
 }

@@ -13,7 +13,7 @@ public class Main {
         Integer check = 0;
         for (int i = 0; i < 15; ++i) {
             if (!classifier.checkG()) {
-                System.out.println("\nIteration #" + (i + 1));
+                System.out.println("\nІтерація: №" + (i + 1));
                 classifier.determineCenters(alternativeArray);
                 classifier.findD();
                 classifier.findP();
@@ -24,7 +24,7 @@ public class Main {
             }
             if (check == 1) break;
         }
-        System.out.println("Result:");
+        System.out.println("Результат:");
         classifier.printResultInfo();
     }
 }
