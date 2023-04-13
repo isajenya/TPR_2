@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Classifier {
     int[] decisions = {1, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 2, 2};
-    int[] class1center = {1, 1, 1, 1, 1};
-    int[] class2center = {2, 2, 2, 2, 3};
+    double[] class1center = {1.0, 1.0, 1.0, 1.0, 1.0};
+    double[] class2center = {2.0, 2.0, 2.0, 2.0, 3.0};
     List<Integer> class1indexes;
     List<Integer> class2indexes;
     int[] K1 = new int[48];
@@ -17,8 +17,8 @@ public class Classifier {
     int[] K4 = new int[48];
     int[] K5 = new int[48];
     int[] G = new int[48];
-    int[] d1 = new int[48];
-    int[] d2 = new int[48];
+    double[] d1 = new double[48];
+    double[] d2 = new double[48];
     double[] p1 = new double[48];
     double[] p2 = new double[48];
     int[] g1 = new int[48];
@@ -77,6 +77,17 @@ public class Classifier {
             class1center[i] /= class1indexes.size();
             class2center[i] /= class2indexes.size();
         }
+
+        System.out.print("Center 1 = ( ");
+        for (int i = 0; i < 5; ++i) {
+            System.out.print(class1center[i]+" ");
+        }
+        System.out.println(")");
+        System.out.print("Center 2 = ( ");
+        for (int i = 0; i < 5; ++i) {
+            System.out.print(class2center[i]+" ");
+        }
+        System.out.println(")");
     }
 
     public void findD() {
@@ -177,7 +188,7 @@ public class Classifier {
                 "K1", "K2", "K3", "K4", "K5", "G", "d1", "d2", "p1", "p2", "g1", "g2", "F1", "F2", "F"));
         for (int i = 0; i < 48; ++i) {
             System.out.println(String.format("%-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s %-7s",
-                    K1[i], K2[i], K3[i], K4[i], K5[i], G[i], d1[i], d2[i], decimalFormat.format(p1[i]), decimalFormat.format(p2[i]),
+                    K1[i], K2[i], K3[i], K4[i], K5[i], G[i], decimalFormat.format(d1[i]), decimalFormat.format(d2[i]), decimalFormat.format(p1[i]), decimalFormat.format(p2[i]),
                     g1[i], g2[i], decimalFormat.format(f1[i]), decimalFormat.format(f2[i]), decimalFormat.format(F[i])));
         }
     }
