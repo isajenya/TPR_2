@@ -2,7 +2,7 @@ package com.gmail.myAlgorithm;
 
 public class Main {
     public static void main(String[] args) {
-        int[] alternativeOptions = {2, 2, 2, 2, 3};
+        double[] alternativeOptions = {2.0, 2.0, 2.0, 2.0, 3.0};
         AlternativeArray alternativeArray = new AlternativeArray();
         alternativeArray.assignSize(alternativeOptions);
         alternativeArray.fillArray(alternativeOptions);
@@ -20,11 +20,11 @@ public class Main {
                 classifier.findG(alternativeArray);
                 classifier.findF();
                 classifier.printAllInfo();
-                classifier.fillG(i, alternativeArray, check);
+                check = classifier.fillG(i, alternativeArray, check);
             }
             if (check == 1) break;
         }
-        System.out.println("Результат:");
+        System.out.println("\nРезультат:");
         classifier.printResultInfo();
     }
 }

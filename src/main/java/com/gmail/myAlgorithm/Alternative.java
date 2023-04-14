@@ -2,17 +2,9 @@ package com.gmail.myAlgorithm;
 
 
 public class Alternative {
-    public int[] attributes;
+    public double[] attributes;
 
-    public void assignSize(int size) {
-        attributes = new int[size];
-    }
-
-    public int[] getAttributes() {
-        return attributes;
-    }
-
-    public void assignAlternativeValue(int[] values) {
+    public void assignAlternativeValue(double[] values) {
         attributes = values;
     }
 
@@ -47,14 +39,14 @@ public class Alternative {
         return result;
     }
 
-    public int[] plusOne(int[] alternativeOptions) {
-        int[] newAttributes = new int[attributes.length];
+    public double[] plusOne(double[] alternativeOptions) {
+        double[] newAttributes = new double[attributes.length];
         for (int i = alternativeOptions.length - 1; i >= 0; --i) {
             if (i != alternativeOptions.length - 1) {
-                newAttributes[i + 1] = 1;
+                newAttributes[i + 1] = 1.0;
             }
             if (attributes[i] < alternativeOptions[i]) {
-                newAttributes[i] = attributes[i] + 1;
+                newAttributes[i] = attributes[i] + 1.0;
                 for (int j = i - 1; j >= 0; --j) {
                     newAttributes[j] = attributes[j];
                 }
