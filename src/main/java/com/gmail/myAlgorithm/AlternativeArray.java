@@ -29,14 +29,6 @@ public class AlternativeArray {
         }
     }
 
-    public Alternative findBest() {
-        return alternatives[0];
-    }
-
-    public Alternative findWorst() {
-        return alternatives[alternatives.length - 1];
-    }
-
     public void advancedAutomaticComparison(Alternative alternative, List<Integer> centerindexes, double[] g1, double[] g2, int iter) {
         g1[iter] = 0.0;
         g2[iter] = 0.0;

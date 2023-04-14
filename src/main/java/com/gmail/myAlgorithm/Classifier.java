@@ -38,10 +38,10 @@ public class Classifier {
     }
 
     public void fillG1() {
-        G[0] = 1;
-        G[47] = 2;
+        G[0] = 1.0;
+        G[47] = 2.0;
         for (int i = 1; i < 47; ++i) {
-            G[i] = -1;
+            G[i] = -1.0;
         }
     }
 
@@ -50,14 +50,14 @@ public class Classifier {
         class1indexes = new ArrayList<>();
         class2indexes = new ArrayList<>();
         for (int i = 0; i < 48; ++i) {
-            if (G[i] == 1)
+            if (G[i] == 1.0)
                 class1indexes.add(i);
-            if (G[i] == 2)
+            if (G[i] == 2.0)
                 class2indexes.add(i);
         }
         for (int i = 0; i < 5; ++i) {
-            class1center[i] = 0;
-            class2center[i] = 0;
+            class1center[i] = 0.0;
+            class2center[i] = 0.0;
         }
         for (int i = 0; i < class1indexes.size(); ++i) {
             class1center[0] += alternativeArray.alternatives[class1indexes.get(i)].attributes[0];
@@ -74,8 +74,8 @@ public class Classifier {
             class2center[4] += alternativeArray.alternatives[class2indexes.get(i)].attributes[4];
         }
         for (int i = 0; i < 5; ++i) {
-            class1center[i] /= class1indexes.size();
-            class2center[i] /= class2indexes.size();
+            class1center[i] /= (double) class1indexes.size();
+            class2center[i] /= (double) class2indexes.size();
         }
 
         System.out.print("Центр 1 = ( ");
@@ -102,16 +102,31 @@ public class Classifier {
     }
 
     public void findP() {
-        double D = -1;
+        double D = -1.0;
         for (int i = 0; i < 48; ++i) {
-            if (d1[i] > D)
+            if (d1[i] > D) {
                 D = d1[i];
+            }
+            //TODO check this D with d2
+            if (d2[i] > D) {
+                D = d2[i];
+            }
         }
         for (int i = 0; i < 48; ++i) {
             p1[i] = (D - d1[i]) / (D - d1[i] + D - d2[i]);
+            if (G[i] == 1.0) {
+                p1[i] = 1.0;
+            } else if (G[i] == 2.0) {
+                p1[i] = 0.0;
+            }
         }
         for (int i = 0; i < 48; ++i) {
-            p2[i] = 1 - p1[i];
+            p2[i] = 1.0 - p1[i];
+            if (G[i] == 1.0) {
+                p2[i] = 0.0;
+            } else if (G[i] == 2.0) {
+                p2[i] = 1.0;
+            }
         }
     }
 
@@ -155,7 +170,7 @@ public class Classifier {
                 FMAX = i;
             }
         }
-        if (Fcomp == 0) {
+        if (Fcomp == 0.0) {
             check = 1;
             System.out.println("Парадокс!");
             return check;
@@ -163,11 +178,11 @@ public class Classifier {
         System.out.println("Обраний об'єкт: ");
         alternativeArray.alternatives[FMAX].printAlternatives();
         if (decisions[iteration] == 1.0) {
-            G[FMAX] = 1;
+            G[FMAX] = 1.0;
             AdjustDecisions = alternativeArray.findBetter(alternativeArray.alternatives[FMAX], class1indexes);
         }
         if (decisions[iteration] == 2.0) {
-            G[FMAX] = 2;
+            G[FMAX] = 2.0;
             AdjustDecisions = alternativeArray.findWorse(alternativeArray.alternatives[FMAX], class1indexes);
         }
         for (int i = 0; i < AdjustDecisions.size(); ++i) {
