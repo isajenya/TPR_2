@@ -107,7 +107,6 @@ public class Classifier {
             if (d1[i] > D) {
                 D = d1[i];
             }
-            //TODO check this D with d2
             if (d2[i] > D) {
                 D = d2[i];
             }
