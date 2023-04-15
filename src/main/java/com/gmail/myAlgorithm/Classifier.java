@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Classifier {
-    double[] decisions = {1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 2.0, 2.0};
+    double[] decisions = {2.0, 1.0, 2.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 2.0};
     double[] class1center = {1.0, 1.0, 1.0, 1.0, 1.0};
     double[] class2center = {2.0, 2.0, 2.0, 2.0, 3.0};
     List<Integer> class1indexes;
@@ -216,6 +216,16 @@ public class Classifier {
         for (int i = 0; i < 48; ++i) {
             System.out.println(K1[i] + "\t" + K2[i] + "\t" + K3[i] + "\t" +
                     K4[i] + "\t" + K5[i] + "\t" + G[i]);
+        }
+    }
+
+    public void clear(){
+        for (int i = 0; i < 48; ++i) {
+            g1[i] = 0.0;
+            g2[i] = 0.0;
+            f1[i] = 0.0;
+            f2[i] = 0.0;
+            F[i] = 0.0;
         }
     }
 }

@@ -25,7 +25,9 @@ public class Main {
             if (check == 1) break;
         }
         System.out.println("\nРезультат:");
-        classifier.printResultInfo();
+        classifier.findP();
+        classifier.clear();
+        classifier.printAllInfo();
     }
 }
 
